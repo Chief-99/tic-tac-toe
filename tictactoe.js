@@ -18,3 +18,10 @@ const gameboard = (function() {
 
     return { setCell };
 })();
+
+function createPlayer(name, symbol) {
+    return {name, symbol };
+}
+
+const player1 = createPlayer('Milo', 'X');
+const player2 = createPlayer('Lungz', 'O');
