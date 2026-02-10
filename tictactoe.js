@@ -5,7 +5,7 @@ const gameboard = (function() {
         board.push([]);
 
         for (let j = 0; j < 3; j++) {
-            board[i].push('0');
+            board[i].push(' ');
         }
     }
 
@@ -20,8 +20,11 @@ const gameboard = (function() {
 })();
 
 function createPlayer(name, symbol) {
-    return {name, symbol };
+    const getSymbol = () => symbol;
+    return {name, getSymbol };
 }
 
 const player1 = createPlayer('Milo', 'X');
 const player2 = createPlayer('Lungz', 'O');
+
+console.log(player1);
