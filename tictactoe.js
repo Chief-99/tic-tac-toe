@@ -14,7 +14,7 @@ const gameboard = (function() {
         return;
     }
 
-    return { board, setCell };
-})();
+    console.log(board);
 
-console.log(gameboard.board);
+    return { setCell };
+})();
