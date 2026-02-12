@@ -1,3 +1,5 @@
+const cells = document.querySelectorAll('.cell');
+
 const gameboard = (function() {
     let board = [];
 
@@ -54,3 +56,17 @@ const gameFlow = (function() {
 
     return { playTurn };
 })();
+
+function userTurn(e) {
+    const target = e.target;
+
+    const coordinateArray = target.id.split('-');
+    const horz = coordinateArray[0];
+    const vert = coordinateArray[1];
+
+    gameFlow.playTurn(horz, vert);
+}
+
+cells.forEach((cell) => {
+    cell.addEventListener('click', userTurn);
+})
