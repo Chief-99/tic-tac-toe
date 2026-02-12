@@ -16,7 +16,7 @@ const gameboard = (function() {
 
     console.log(board);
 
-    return { setCell };
+    return { setCell, board };
 })();
 
 function createPlayer(name, symbol) {
@@ -27,4 +27,30 @@ function createPlayer(name, symbol) {
 const player1 = createPlayer('Milo', 'X');
 const player2 = createPlayer('Lungz', 'O');
 
-console.log(player1);
+const gameFlow = (function() {
+    let random = Math.random();
+
+    function initialTurn(random) {
+        return random < 0.5 ? 1 : 2;
+    }
+
+    let currentTurn = initialTurn(random);
+
+    const symbolOne = player1.getSymbol();
+    const symbolTwo = player2.getSymbol();
+
+    function playTurn(horz, vert) {
+        let current = currentTurn;
+
+        if (current === 1) {
+            gameboard.setCell(horz, vert, symbolOne);
+            currentTurn = 2;
+        } else if (current === 2) {
+            gameboard.setCell(horz, vert, symbolTwo);
+            currentTurn = 1;
+        }
+        console.log(gameboard.board);
+    }
+
+    return { playTurn };
+})();
