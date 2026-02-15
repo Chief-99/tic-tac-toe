@@ -7,7 +7,7 @@ const gameboard = (function () {
         board.push([]);
 
         for (let j = 0; j < 3; j++) {
-            board[i].push(' ');
+            board[i].push('');
         }
     }
 
@@ -72,11 +72,46 @@ const gameFlow = (function () {
         } else {
             playTurn(horz, vert);
             target.textContent = currentSymbol;
+            checkGame();
             return;
         }
 
+    }
 
+    function checkGame() {
+        let cell = gameboard.getCell;
 
+        for (let i = 0; i < 3; i++) {
+            if (cell(i, i) === '') {
+                return;
+            }
+        }
+
+        for (let i = 0; i < 3; i++) {
+            if (
+                cell(i, 0) === cell(i, 1) &&
+                cell(i, 1) === cell(i, 2)
+            ) {
+                alert(`Congratulations player ${currentTurn}, you have won the game!!!`);
+                return;
+            } else if (
+                cell(0, i) === cell(1, i) &&
+                cell(1, i) === cell(2, i)
+            ) {
+                alert(`Congratulations player ${currentTurn}, you have won the game!!!`);
+                return;
+            } else if (
+                (cell(0, 0) === cell(1, 1) &&
+                cell(1, 1) === cell(2, 2)) ||
+                (cell(0, 2) === cell(1, 1) &&
+                cell(1, 1) === cell(2, 0))
+            ) {
+                alert(`Congratulations player ${currentTurn}, you have won the game!!!`);
+                return;
+            } else {
+                return;
+            }
+        }
     }
 
     return { userTurn };
