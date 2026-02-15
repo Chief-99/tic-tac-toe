@@ -59,13 +59,17 @@ body {
 
 .container {
     height: 40rem;
+    max-width: 40rem;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    gap: 2px;
+    gap: 5px;
     background-color: purple;
 }
 
 .cell {
     background-color: white;
+    font-size: 5rem;
+    text-align: center;
+    align-content: center;
 }
