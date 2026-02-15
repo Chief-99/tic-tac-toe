@@ -43,13 +43,11 @@ const gameFlow = (function () {
     let currentSymbol;
 
     function playTurn(horz, vert) {
-        let current = currentTurn;
-
-        if (current === 1) {
+        if (currentTurn === 1) {
             currentSymbol = symbolOne;
             gameboard.setCell(horz, vert, symbolOne);
             currentTurn = 2;
-        } else if (current === 2) {
+        } else if (currentTurn === 2) {
             currentSymbol = symbolTwo;
             gameboard.setCell(horz, vert, symbolTwo);
             currentTurn = 1;
