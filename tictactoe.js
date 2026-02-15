@@ -58,16 +58,25 @@ const gameFlow = (function () {
         }
         console.log(gameboard.board);
     }
-    
+
     function userTurn(e) {
         const target = e.target;
-    
+
         const coordinateArray = target.id.split('-');
         const horz = coordinateArray[0];
         const vert = coordinateArray[1];
-        
-        playTurn(horz, vert);
-        target.textContent = currentSymbol;
+        console.log(gameboard.getCell(horz, vert))
+
+        if (target.textContent) {
+            return;
+        } else {
+            playTurn(horz, vert);
+            target.textContent = currentSymbol;
+            return;
+        }
+
+
+
     }
 
     return { userTurn };
