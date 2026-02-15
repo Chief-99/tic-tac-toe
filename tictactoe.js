@@ -16,9 +16,13 @@ const gameboard = (function () {
         return;
     }
 
+    const getCell = function (horizontal, vertical) {
+        return board[horizontal][vertical];
+    }
+
     console.log(board);
 
-    return { setCell, board };
+    return { setCell, getCell, board };
 })();
 
 function createPlayer(name, symbol) {
