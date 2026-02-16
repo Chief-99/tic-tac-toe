@@ -1,4 +1,6 @@
 const cells = document.querySelectorAll('.cell');
+const dialog = document.getElementById('win-dialog');
+const winMessage = document.getElementById('win-message');
 
 const gameboard = (function () {
     let board = [];
