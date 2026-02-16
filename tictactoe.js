@@ -22,9 +22,15 @@ const gameboard = (function () {
         return board[horizontal][vertical];
     }
 
+    const clearBoard = function () {
+        board.forEach((elem) => {
+            elem.forEach((element, index) => elem[index] = '');
+        });
+    }
+
     console.log(board);
 
-    return { setCell, getCell, board };
+    return { setCell, getCell, clearBoard, board };
 })();
 
 function createPlayer(name, symbol) {
@@ -117,6 +123,12 @@ const gameFlow = (function () {
         dialog.showModal();
         winMessage.textContent = `Congratulations player ${currentTurnDisplay}, you won the game!!!`;
         currentTurnDisplay = currentTurn;
+        dialog.addEventListener('close', () => {
+            cells.forEach((cell) => cell.textContent = '');
+            gameboard.clearBoard();
+            console.log(gameboard.board);
+
+        })
     }
 
     return { userTurn };
