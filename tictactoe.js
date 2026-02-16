@@ -82,33 +82,29 @@ const gameFlow = (function () {
         let cell = gameboard.getCell;
 
         for (let i = 0; i < 3; i++) {
-            if (cell(i, i) === '') {
-                return;
-            }
-        }
-
-        for (let i = 0; i < 3; i++) {
             if (
                 cell(i, 0) === cell(i, 1) &&
-                cell(i, 1) === cell(i, 2)
+                cell(i, 1) === cell(i, 2) &&
+                cell(i, 2) !== ''
             ) {
                 alert(`Congratulations player ${currentTurn}, you have won the game!!!`);
                 return;
             } else if (
                 cell(0, i) === cell(1, i) &&
-                cell(1, i) === cell(2, i)
+                cell(1, i) === cell(2, i) &&
+                cell(0, i) !== ''
             ) {
                 alert(`Congratulations player ${currentTurn}, you have won the game!!!`);
                 return;
             } else if (
                 (cell(0, 0) === cell(1, 1) &&
-                cell(1, 1) === cell(2, 2)) ||
+                cell(1, 1) === cell(2, 2)) &&
+                cell(0, 0) !== '' ||
                 (cell(0, 2) === cell(1, 1) &&
-                cell(1, 1) === cell(2, 0))
+                cell(1, 1) === cell(2, 0)) &&
+                cell(2, 0) !== ''
             ) {
                 alert(`Congratulations player ${currentTurn}, you have won the game!!!`);
-                return;
-            } else {
                 return;
             }
         }
