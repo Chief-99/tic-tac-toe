@@ -43,6 +43,7 @@ const gameFlow = (function () {
     }
 
     let currentTurn = initialTurn(random);
+    let currentTurnDisplay = currentTurn;
 
     const symbolOne = player1.getSymbol();
     const symbolTwo = player2.getSymbol();
@@ -89,14 +90,14 @@ const gameFlow = (function () {
                 cell(i, 1) === cell(i, 2) &&
                 cell(i, 2) !== ''
             ) {
-                alert(`Congratulations player ${currentTurn}, you have won the game!!!`);
+                displayVictor();
                 return;
             } else if (
                 cell(0, i) === cell(1, i) &&
                 cell(1, i) === cell(2, i) &&
                 cell(0, i) !== ''
             ) {
-                alert(`Congratulations player ${currentTurn}, you have won the game!!!`);
+                displayVictor();
                 return;
             } else if (
                 (cell(0, 0) === cell(1, 1) &&
@@ -106,10 +107,16 @@ const gameFlow = (function () {
                 cell(1, 1) === cell(2, 0)) &&
                 cell(2, 0) !== ''
             ) {
-                alert(`Congratulations player ${currentTurn}, you have won the game!!!`);
+                displayVictor();
                 return;
             }
         }
+    }
+
+    function displayVictor() {
+        dialog.showModal();
+        winMessage.textContent = `Congratulations player ${currentTurnDisplay}, you won the game!!!`;
+        currentTurnDisplay = currentTurn;
     }
 
     return { userTurn };
