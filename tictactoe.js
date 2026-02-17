@@ -1,6 +1,7 @@
 const cells = document.querySelectorAll('.cell');
 const dialog = document.getElementById('win-dialog');
 const winMessage = document.getElementById('win-message');
+const closeButton = document.getElementById('dialog-close-button');
 
 const gameboard = (function () {
     let board = [];
@@ -79,6 +80,7 @@ const gameFlow = (function () {
         if (target.textContent) {
             return;
         } else {
+            currentTurnDisplay = currentTurn;
             playTurn(horz, vert);
             target.textContent = currentSymbol;
             checkGame();
@@ -107,10 +109,10 @@ const gameFlow = (function () {
                 return;
             } else if (
                 (cell(0, 0) === cell(1, 1) &&
-                cell(1, 1) === cell(2, 2)) &&
+                    cell(1, 1) === cell(2, 2)) &&
                 cell(0, 0) !== '' ||
                 (cell(0, 2) === cell(1, 1) &&
-                cell(1, 1) === cell(2, 0)) &&
+                    cell(1, 1) === cell(2, 0)) &&
                 cell(2, 0) !== ''
             ) {
                 displayVictor();
@@ -122,18 +124,17 @@ const gameFlow = (function () {
     function displayVictor() {
         dialog.showModal();
         winMessage.textContent = `Congratulations player ${currentTurnDisplay}, you won the game!!!`;
-        currentTurnDisplay = currentTurn;
         dialog.addEventListener('close', () => {
             cells.forEach((cell) => cell.textContent = '');
             gameboard.clearBoard();
             console.log(gameboard.board);
-
-        })
+        });
     }
 
     return { userTurn };
 })();
 
+closeButton.addEventListener('click', () => dialog.close());
 
 cells.forEach((cell) => {
     cell.addEventListener('click', gameFlow.userTurn);
