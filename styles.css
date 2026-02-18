@@ -53,13 +53,19 @@ h1, h2, h3, h4, h5, h6 {
   isolation: isolate;
 }
 
-body {
-    padding: 4rem;
+:root {
+  --dimensions: clamp(10rem, 80%, 40rem);
 }
 
-.container {
-    height: 40rem;
-    max-width: 40rem;
+body {
+    padding: 4rem;
+    height: 100dvh;
+    justify-items: center;
+}
+
+#board {
+    width: var(--dimensions);
+    aspect-ratio: 1 / 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
