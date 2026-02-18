@@ -29,9 +29,13 @@ const gameboard = (function () {
         });
     }
 
+    const getBoard = function () {
+        return board;
+    }
+
     console.log(board);
 
-    return { setCell, getCell, clearBoard, board };
+    return { setCell, getCell, clearBoard, getBoard };
 })();
 
 function createPlayer(name, symbol) {
@@ -66,7 +70,7 @@ const gameFlow = (function () {
             gameboard.setCell(horz, vert, symbolTwo);
             currentTurn = 1;
         }
-        console.log(gameboard.board);
+        console.log(gameboard.getBoard());
     }
 
     function userTurn(e) {
@@ -84,6 +88,7 @@ const gameFlow = (function () {
             playTurn(horz, vert);
             target.textContent = currentSymbol;
             checkGame();
+            checkDraw(gameboard.getBoard());
             return;
         }
 
@@ -98,14 +103,14 @@ const gameFlow = (function () {
                 cell(i, 1) === cell(i, 2) &&
                 cell(i, 2) !== ''
             ) {
-                displayVictor();
+                displayVictor('winner');
                 return;
             } else if (
                 cell(0, i) === cell(1, i) &&
                 cell(1, i) === cell(2, i) &&
                 cell(0, i) !== ''
             ) {
-                displayVictor();
+                displayVictor('winner');
                 return;
             } else if (
                 (cell(0, 0) === cell(1, 1) &&
@@ -115,19 +120,40 @@ const gameFlow = (function () {
                     cell(1, 1) === cell(2, 0)) &&
                 cell(2, 0) !== ''
             ) {
-                displayVictor();
+                displayVictor('winner');
                 return;
             }
         }
     }
 
-    function displayVictor() {
+    function checkDraw(board) {
+        let draw;
+        let length = 0;
+
+        for (let i = 0; i < 3; i++) {
+            draw = board[i].filter(cell => cell === '');
+            length += draw.length;
+        }
+        
+        if (length === 0) {
+            displayVictor('draw');
+        }
+        return; 
+    }
+
+    function displayVictor(outcome) {
         dialog.showModal();
-        winMessage.textContent = `Congratulations player ${currentTurnDisplay}, you won the game!!!`;
+
+        if (outcome === 'winner') {
+            winMessage.textContent = `Congratulations player ${currentTurnDisplay}, you won the game!!!`;
+        } else if (outcome === 'draw') {
+            winMessage.textContent = `Both players are evenly matched! Please play again.`;
+        }
+
         dialog.addEventListener('close', () => {
             cells.forEach((cell) => cell.textContent = '');
             gameboard.clearBoard();
-            console.log(gameboard.board);
+            console.log(gameboard.getBoard());
         });
     }
 
