@@ -85,3 +85,34 @@ body {
     text-align: center;
     align-content: center;
 }
+
+.stroke-circle,
+.stroke-line {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  stroke: white;
+  stroke-width: 0.2rem;
+  fill: none;
+  animation-name: strokeAni;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+.stroke-circle {
+  animation-duration: 800ms;
+  stroke-linecap: square;
+}
+
+.stroke-line {
+  animation-duration: 500ms;
+}
+
+.stroke-delayed {
+  animation-delay: 300ms;
+}
+
+@keyframes strokeAni {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

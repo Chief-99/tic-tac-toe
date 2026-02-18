@@ -3,6 +3,23 @@ const dialog = document.getElementById('win-dialog');
 const winMessage = document.getElementById('win-message');
 const closeButton = document.getElementById('dialog-close-button');
 
+// Where I got the SVGs and the idea:
+// Source - https://stackoverflow.com/a/77239269
+// Posted by herrstrietzel
+// Retrieved 2026-02-19, License - CC BY-SA 4.0
+const svg_x = `
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50">
+        <line pathLength="100" class="stroke-line" x1="8.5" y1="8.5" x2="41.5" y2="41.5" />
+        <line pathLength="100" class="stroke-line stroke-delayed" x1="41.5" y1="8.5" x2="8.5" y2="41.5" />
+    </svg>
+`;
+
+const svg_o = `
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50">
+        <circle class="stroke-circle" pathLength="100" cx="25" cy="25" r="18" transform="rotate(-90) scale(1 -1)" transform-origin="25 25" />
+    </svg>
+`;
+
 const gameboard = (function () {
     let board = [];
 
@@ -62,11 +79,11 @@ const gameFlow = (function () {
 
     function playTurn(horz, vert) {
         if (currentTurn === 1) {
-            currentSymbol = symbolOne;
+            currentSymbol = svg_x;
             gameboard.setCell(horz, vert, symbolOne);
             currentTurn = 2;
         } else if (currentTurn === 2) {
-            currentSymbol = symbolTwo;
+            currentSymbol = svg_o;
             gameboard.setCell(horz, vert, symbolTwo);
             currentTurn = 1;
         }
@@ -86,7 +103,7 @@ const gameFlow = (function () {
         } else {
             currentTurnDisplay = currentTurn;
             playTurn(horz, vert);
-            target.textContent = currentSymbol;
+            target.innerHTML = currentSymbol;
             checkGame();
             checkDraw(gameboard.getBoard());
             return;
@@ -134,11 +151,11 @@ const gameFlow = (function () {
             draw = board[i].filter(cell => cell === '');
             length += draw.length;
         }
-        
+
         if (length === 0) {
             displayVictor('draw');
         }
-        return; 
+        return;
     }
 
     function displayVictor(outcome) {
