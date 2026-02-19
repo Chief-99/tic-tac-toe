@@ -2,6 +2,9 @@ const cells = document.querySelectorAll('.cell');
 const dialog = document.getElementById('win-dialog');
 const winMessage = document.getElementById('win-message');
 const closeButton = document.getElementById('dialog-close-button');
+const p1Count = document.querySelector('.player1-count');
+const p2Count = document.querySelector('.player2-count');
+const drawCount = document.querySelector('.draw-count');
 
 // Where I got the SVGs and the idea:
 // Source - https://stackoverflow.com/a/77239269
@@ -164,17 +167,26 @@ const gameFlow = (function () {
     }
 
     function displayVictor(outcome) {
-        setTimeout(() => dialog.showModal(), 1200);
+        setTimeout(() => dialog.showModal(), 1100);
 
         if (outcome === 'winner') {
             winMessage.textContent = `Congratulations player ${currentTurnDisplay}, you won the game!!!`;
             score[`player${currentTurnDisplay}`]++;
-            console.log(score)
+
+            setTimeout(() => {
+                if (currentTurnDisplay === 1) {
+                    p1Count.textContent = score.player1;
+                } else {
+                    p2Count.textContent = score.player2;
+                }
+            }, 1100);
             
         } else if (outcome === 'draw') {
             winMessage.textContent = `Both players are evenly matched! Please play again.`;
             score.draw++;
-            console.log(score);
+            setTimeout(() => {
+                drawCount.textContent = score.draw;
+            }, 1100);
         }
 
         dialog.addEventListener('close', () => {
@@ -184,7 +196,7 @@ const gameFlow = (function () {
         });
     }
 
-    return { userTurn, score };
+    return { userTurn };
 })();
 
 closeButton.addEventListener('click', () => dialog.close());
