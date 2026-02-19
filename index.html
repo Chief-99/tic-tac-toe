@@ -9,6 +9,21 @@
     <script src="tictactoe.js" defer></script>
 </head>
 <body>
+    <div id="scoreboard">
+        <div class="score-container">
+            <p class="player1 score-title">P1</p>
+            <p class="player1-score"> </p>
+        </div>
+        <div class="score-container">
+            <p class="draw score-title">Draw</p>
+            <p class="draw-count"> </p>
+        </div>
+        <div class="score-container">
+            <p class="player2 score-title">P2</p>
+            <p class="player2-count"> </p>
+        </div>
+    </div>
+
     <div id="board">
         <div class="cell" id="0-0"></div>
         <div class="cell" id="0-1"></div>
@@ -19,21 +34,6 @@
         <div class="cell" id="2-0"></div>
         <div class="cell" id="2-1"></div>
         <div class="cell" id="2-2"></div>
-    </div>
-
-    <div id="scoreboard">
-        <div class="score-container">
-            <p class="player1 score-title">P1</p>
-            <p class="player1-score"></p>
-        </div>
-        <div class="score-container">
-            <p class="draw score-title">Draw</p>
-            <p class="draw-count"></p>
-        </div>
-        <div class="score-container">
-            <p class="player2 score-title">P2</p>
-            <p class="player2-count"></p>
-        </div>
     </div>
 
     <dialog id="win-dialog">

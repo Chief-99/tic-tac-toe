@@ -81,9 +81,12 @@ h6 {
 }
 
 body {
-    padding: 6rem 4rem;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 4rem;
     height: 100dvh;
-    justify-items: center;
+    justify-content: space-between;
+    align-items: center;
     background-color: var(--primiary-colour);
     width: 100dvw;
 }
@@ -96,7 +99,7 @@ body {
     grid-template-rows: repeat(3, minmax(3.75rem, 1fr));
     gap: 5px;
     background-color: white;
-    margin-bottom: 2rem;
+    border: none;
 }
 
 .cell {

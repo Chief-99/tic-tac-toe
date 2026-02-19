@@ -65,6 +65,11 @@ const player2 = createPlayer('Lungz', 'O');
 
 const gameFlow = (function () {
     let random = Math.random();
+    let score = {
+        player1: 0,
+        player2: 0,
+        draw: 0,
+    };
 
     function initialTurn(random) {
         return random < 0.5 ? 1 : 2;
@@ -163,8 +168,13 @@ const gameFlow = (function () {
 
         if (outcome === 'winner') {
             winMessage.textContent = `Congratulations player ${currentTurnDisplay}, you won the game!!!`;
+            score[`player${currentTurnDisplay}`]++;
+            console.log(score)
+            
         } else if (outcome === 'draw') {
             winMessage.textContent = `Both players are evenly matched! Please play again.`;
+            score.draw++;
+            console.log(score);
         }
 
         dialog.addEventListener('close', () => {
@@ -174,7 +184,7 @@ const gameFlow = (function () {
         });
     }
 
-    return { userTurn };
+    return { userTurn, score };
 })();
 
 closeButton.addEventListener('click', () => dialog.close());
