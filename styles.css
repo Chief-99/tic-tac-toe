@@ -1,65 +1,87 @@
 /* 1. Use a more-intuitive box-sizing model */
-*, *::before, *::after {
-  box-sizing: border-box;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 /* 2. Remove default margin */
 *:not(dialog) {
-  margin: 0;
+    margin: 0;
 }
 
 /* 3. Enable keyword animations */
 @media (prefers-reduced-motion: no-preference) {
-  html {
-    interpolate-size: allow-keywords;
-  }
+    html {
+        interpolate-size: allow-keywords;
+    }
 }
 
 body {
-  /* 4. Add accessible line-height */
-  line-height: 1.5;
-  /* 5. Improve text rendering */
-  -webkit-font-smoothing: antialiased;
+    /* 4. Add accessible line-height */
+    line-height: 1.5;
+    /* 5. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
 }
 
 /* 6. Improve media defaults */
-img, picture, video, canvas, svg {
-  display: block;
-  max-width: 100%;
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
 }
 
 /* 7. Inherit fonts for form controls */
-input, button, textarea, select {
-  font: inherit;
+input,
+button,
+textarea,
+select {
+    font: inherit;
 }
 
 /* 8. Avoid text overflows */
-p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
 }
 
 /* 9. Improve line wrapping */
 p {
-  text-wrap: pretty;
+    text-wrap: pretty;
 }
-h1, h2, h3, h4, h5, h6 {
-  text-wrap: balance;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
 }
 
 /*
   10. Create a root stacking context
 */
-#root, #__next {
-  isolation: isolate;
+#root,
+#__next {
+    isolation: isolate;
 }
 
 :root {
-  --dimensions: clamp(10rem, 100%, 30rem);
-  --primiary-colour: rgb(28, 0, 28);
+    --dimensions: clamp(10rem, 100%, 30rem);
+    --primiary-colour: rgb(28, 0, 28);
 }
 
 body {
-    padding: 8rem 2rem;
+    padding: 6rem 4rem;
     height: 100dvh;
     justify-items: center;
     background-color: var(--primiary-colour);
@@ -74,12 +96,12 @@ body {
     grid-template-rows: repeat(3, minmax(3.75rem, 1fr));
     gap: 5px;
     background-color: white;
+    margin-bottom: 2rem;
 }
 
 .cell {
     min-width: 100%;
     background-color: var(--primiary-colour);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: white;
     font-size: clamp(2.5rem, 1.0588rem + 2.3529vw, 4rem);
     text-align: center;
@@ -88,31 +110,46 @@ body {
 
 .stroke-circle,
 .stroke-line {
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  stroke: white;
-  stroke-width: 0.2rem;
-  fill: none;
-  animation-name: strokeAni;
-  animation-fill-mode: forwards;
-  animation-iteration-count: 1;
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    stroke: white;
+    stroke-width: 0.2rem;
+    fill: none;
+    animation-name: strokeAni;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
 }
 
 .stroke-circle {
-  animation-duration: 800ms;
-  stroke-linecap: square;
+    animation-duration: 800ms;
+    stroke-linecap: square;
 }
 
 .stroke-line {
-  animation-duration: 500ms;
+    animation-duration: 500ms;
 }
 
 .stroke-delayed {
-  animation-delay: 300ms;
+    animation-delay: 300ms;
 }
 
 @keyframes strokeAni {
-  to {
-    stroke-dashoffset: 0;
-  }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+#scoreboard {
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.score-title {
+    text-decoration: underline;
+    text-underline-offset: 5px;
 }
