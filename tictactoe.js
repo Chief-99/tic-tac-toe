@@ -192,18 +192,18 @@ const gameFlow = (function () {
 
         pageBoard.classList.toggle('unclickable');
 
-        dialog.addEventListener('close', () => {
-            cells.forEach((cell) => cell.textContent = '');
-            gameboard.clearBoard();
-            console.log(gameboard.getBoard());
-            pageBoard.classList.toggle('unclickable');
-        });
     }
-
+    
     return { userTurn };
 })();
 
 closeButton.addEventListener('click', () => dialog.close());
+
+dialog.addEventListener('close', () => {
+    cells.forEach((cell) => cell.textContent = '');
+    gameboard.clearBoard();
+    pageBoard.classList.toggle('unclickable');
+});
 
 cells.forEach((cell) => {
     cell.addEventListener('click', gameFlow.userTurn);
