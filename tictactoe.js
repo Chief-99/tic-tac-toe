@@ -6,6 +6,8 @@ const p1Count = document.querySelector('.player1-count');
 const p2Count = document.querySelector('.player2-count');
 const drawCount = document.querySelector('.draw-count');
 const pageBoard = document.getElementById('board');
+const resetButton = document.getElementById('reset-button')
+const scoreCount = document.querySelectorAll('.count');
 
 // Where I got the SVGs and the idea:
 // Source - https://stackoverflow.com/a/77239269
@@ -47,6 +49,7 @@ const gameboard = (function () {
     const clearBoard = function () {
         board.forEach((elem) => {
             elem.forEach((element, index) => elem[index] = '');
+            cells.forEach((cell) => cell.textContent = '');
         });
     }
 
@@ -74,6 +77,14 @@ const gameFlow = (function () {
         player2: 0,
         draw: 0,
     };
+
+    function resetScore () {
+        score.draw = 0;
+        score.player1 = 0;
+        score.player2 = 0;
+        gameboard.clearBoard();
+        scoreCount.forEach((score) => score.textContent = 0);
+    }
 
     function initialTurn(random) {
         return random < 0.5 ? 1 : 2;
@@ -194,13 +205,12 @@ const gameFlow = (function () {
 
     }
     
-    return { userTurn };
+    return { userTurn, resetScore };
 })();
 
 closeButton.addEventListener('click', () => dialog.close());
 
 dialog.addEventListener('close', () => {
-    cells.forEach((cell) => cell.textContent = '');
     gameboard.clearBoard();
     pageBoard.classList.toggle('unclickable');
 });
@@ -208,3 +218,5 @@ dialog.addEventListener('close', () => {
 cells.forEach((cell) => {
     cell.addEventListener('click', gameFlow.userTurn);
 })
+
+resetButton.addEventListener('click', gameFlow.resetScore);
