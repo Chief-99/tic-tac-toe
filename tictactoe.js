@@ -5,6 +5,7 @@ const closeButton = document.getElementById('dialog-close-button');
 const p1Count = document.querySelector('.player1-count');
 const p2Count = document.querySelector('.player2-count');
 const drawCount = document.querySelector('.draw-count');
+const pageBoard = document.getElementById('board');
 
 // Where I got the SVGs and the idea:
 // Source - https://stackoverflow.com/a/77239269
@@ -189,10 +190,13 @@ const gameFlow = (function () {
             }, 1100);
         }
 
+        pageBoard.classList.toggle('unclickable');
+
         dialog.addEventListener('close', () => {
             cells.forEach((cell) => cell.textContent = '');
             gameboard.clearBoard();
             console.log(gameboard.getBoard());
+            pageBoard.classList.toggle('unclickable');
         });
     }
 
