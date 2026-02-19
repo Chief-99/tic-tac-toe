@@ -177,6 +177,11 @@ body {
     border: none;
 }
 
+::backdrop {
+    background-color: var(--primary-colour);
+    opacity: 0.75;
+}
+
 #dialog-close-button {
     width: 100%;
     margin-top: 1.5rem;
