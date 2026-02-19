@@ -159,7 +159,7 @@ const gameFlow = (function () {
     }
 
     function displayVictor(outcome) {
-        setTimeout(() => dialog.showModal(), 1000);
+        setTimeout(() => dialog.showModal(), 1200);
 
         if (outcome === 'winner') {
             winMessage.textContent = `Congratulations player ${currentTurnDisplay}, you won the game!!!`;
